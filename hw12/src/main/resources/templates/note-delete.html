@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Deleting a note</title>
+</head>
+<body>
+<h1>Deleting a note</h1>
+<form method="post" action="/note/delete">
+    <input type="hidden" name="_csrf" value="${_csrf.token}"/>
+    <input type="hidden" name="_csrf_header" value="${_csrf.headerName}"/>
+    <input type="hidden" name="id" value="{noteId}"/>
+    <p>Are you sure you want to delete this note?</p>
+    <button type="submit">Delete</button>
+</form>
+<form th:action="@{/note/list}" method="get">
+    <input type="submit" value="Back to list">
+</form>
+</body>
+</html>

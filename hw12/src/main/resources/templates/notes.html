@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>List of notes</title>
+</head>
+<body>
+<h1>List of notes</h1>
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Title</th>
+        <th>Content</th>
+        <th>Actions</th>
+    </tr>
+    <!-- Виведення списку нотаток з даними з моделі -->
+    <tr th:each="note : ${notes}">
+<!--        <p>ID: <span th:text="${note.id}"></span></p>-->
+        <td th:text="${note.id}"></td>
+        <td th:text="${note.title}"></td>
+        <td th:text="${note.content}"></td>
+        <td>
+            <!-- Кнопка для видалення нотатки з використанням POST /note/delete -->
+            <form th:action="@{/note/delete}" method="post">
+                <input type="hidden" name="id" th:value="${note.id}">
+                <input type="submit" value="Delete">
+            </form>
+            <!-- Кнопка для редагування нотатки, переходить на GET /note/edit з параметром id -->
+            <form th:action="@{/note/edit}" method="get">
+                <input type="hidden" name="id" th:value="${note.id}">
+                <input type="submit" value="Edit">
+            </form>
+        </td>
+    </tr>
+</table>
+<!-- Кнопка для додавання нової нотатки, переходить на сторінку додавання GET /note/add -->
+<form th:action="@{/note/add}" method="post">
+    <input type="submit" value="Add Note">
+</form>
+</body>
+</html>

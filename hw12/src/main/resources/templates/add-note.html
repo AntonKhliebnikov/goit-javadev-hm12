@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Adding a note</title>
+</head>
+<body>
+<h1>Adding a note</h1>
+<form method="post" action="/note/add">
+    <input type="hidden" name="_csrf" value="${_csrf.token}"/>
+    <input type="hidden" name="_csrf_header" value="${_csrf.headerName}"/>
+    <label for="title">Title:</label>
+    <input type="text" name="title" id="title" required/>
+    <br>
+    <label for="content">Content:</label>
+    <textarea name="content" id="content" required></textarea>
+    <br>
+    <input type="submit" value="Save">
+</form>
+<form th:action="@{/note/list}" method="get">
+    <input type="submit" value="Back to list">
+</form>
+</body>
+</html>
