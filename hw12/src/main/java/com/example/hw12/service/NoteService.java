@@ -1,44 +1,33 @@
 package com.example.hw12.service;
 
 import com.example.hw12.entity.Note;
+import com.example.hw12.repository.NoteRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
-
+@RequiredArgsConstructor
 @Service
 public class NoteService {
-    private final Map<Long, Note> notes = new HashMap<>();
-    private final Random random = new Random();
+    private final NoteRepository noteRepository;
 
     public List<Note> listAll() {
-        return new ArrayList<>(notes.values());
+        return noteRepository.findAll();
     }
 
     public Note add(Note note) {
-        long id = random.nextLong();
-        note.setId(id);
-        notes.put(id, note);
-        return note;
+        return noteRepository.save(note);
     }
 
     public void deleteById(long id) {
-        if (!notes.containsKey(id)) {
-            throw new IllegalArgumentException("Note with id " + id + " does not exist");
-        }
-        notes.remove(id);
+        noteRepository.deleteById(id);
     }
 
     public void update(Note note) {
-        if (!notes.containsKey(note.getId())) {
-            throw new IllegalArgumentException("Note with id " + note.getId() + " does not exist");
-        }
-        notes.put(note.getId(), note);
+        noteRepository.save(note);
     }
 
-    public Note getById(long id) {
-        if (!notes.containsKey(id)) {
-            throw new IllegalArgumentException("Note with id " + id + " does not exist");
-        }
-        return notes.get(id);
+    public Optional<Note> getById(long id) {
+        return noteRepository.findById(id);
     }
 }

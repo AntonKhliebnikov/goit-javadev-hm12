@@ -7,9 +7,9 @@
 <h1>Editing a note</h1>
 <!-- Форма редагування нотатки, відправляє дані на POST /note/edit -->
 <form th:action="@{/note/edit}" method="post">
-    <input type="hidden" name="id" th:value="${note.id}">
+    <input type="hidden" name="id" value="{noteId}"/>
     <label for="title">Title:</label>
-    <input type="text" id="title" name="title" th:value="${note.title}">
+    <input type="text" id="title" name="title" value="${note.title}">
     <br>
     <label for="content">Content:</label>
     <textarea id="content" name="content">${note.content}</textarea>

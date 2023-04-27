@@ -6,6 +6,8 @@ build/
 !**/src/test/**/build/
 gradlew
 gradlew.bat
+db.mv.db
+db.trace.db
 
 ### STS ###
 .apt_generated

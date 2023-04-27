@@ -1,0 +1,6 @@
+CREATE TABLE IF NOT EXISTS Note
+(
+    id      BIGINT       NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    title   VARCHAR(200),
+    content VARCHAR(500)
+);

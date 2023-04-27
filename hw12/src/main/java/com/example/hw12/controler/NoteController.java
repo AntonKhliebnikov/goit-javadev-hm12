@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/note")
@@ -37,7 +38,7 @@ public class NoteController {
 
     @GetMapping("/edit")
     public String getEditNoteById(@RequestParam("id") Long id, Model model) {
-        Note note = noteService.getById(id);
+        Optional<Note> note = noteService.getById(id);
         model.addAttribute("note", note);
         return "edit-note";
     }
